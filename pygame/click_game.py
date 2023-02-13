@@ -1,35 +1,47 @@
 from random import randint
-Astronaut = Actor('astronaut')
 
-WIDTH = 300
-HEIGHT = 300
+white = [255, 255, 255]
+red = [255, 0, 0]
 
-def draw():
-    screen.fill((128, 0, 0))
-    screen.clear()
-    Astronaut.draw()
+astronaut = Actor('astronaut')
+astronaut.pos = (20, 20)
 
-Astronaut.pos = 100, 100
+coin = Actor('coin')
+coin.pos = (30, 30)
 
 WIDTH = 500
-HEIGHT = Astronaut.height + 400
+HEIGHT = 500
+vel = 5
 
-
-Astronaut.topright = 0, 10
+def draw():
+    screen.clear()
+    screen.fill('black')
+    astronaut.draw()
+    coin.draw()
 
 
 def update():
-    Astronaut.left += 2
-    if Astronaut.left > WIDTH:
-        Astronaut.right = 0
+    move_left(2)
+
 
 def on_mouse_down(pos):
-    if Astronaut.collidepoint(pos):
+    if astronaut.collidepoint(pos):
         print("Ouch")
     else:
         print("You're bad!")
         quit()
 
 
-Astronaut.x = randint(10, 800)
-Astronaut.y = randint(10, 600)
+astronaut.x = randint(10, 800)
+astronaut.y = randint(10, 800)
+
+def move_right(speed):
+    astronaut.left += speed
+    if astronaut.left > WIDTH:
+        astronaut.right = 0
+
+def move_left(speed):
+    astronaut.left += speed
+    if astronaut.left > WIDTH:
+        astronaut.right = 0
+
