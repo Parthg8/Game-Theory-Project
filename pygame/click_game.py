@@ -9,8 +9,8 @@ astronaut.pos = (20, 20)
 coin = Actor('coin')
 coin.pos = (30, 30)
 
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 1000
+HEIGHT = 1000
 vel = 5
 
 def draw():
@@ -29,19 +29,24 @@ def on_mouse_down(pos):
         print("Ouch")
     else:
         print("You're bad!")
-        quit()
+
+def time_up():
+    pass
+
+clock.schedule(time_up, 7.0)
 
 
 astronaut.x = randint(10, 800)
 astronaut.y = randint(10, 800)
+coin.x = randint(10, 800)
 
-def move_right(speed):
-    astronaut.left += speed
+def move_right(vel):
+    astronaut.left += vel
     if astronaut.left > WIDTH:
         astronaut.right = 0
 
-def move_left(speed):
-    astronaut.left += speed
+def move_left(vel):
+    astronaut.left += vel
     if astronaut.left > WIDTH:
         astronaut.right = 0
 
